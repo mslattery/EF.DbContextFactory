@@ -33,11 +33,11 @@ namespace EFCore.DbContextFactory.Examples.WebApi
             });
 
             // *********************** normal way to inject a DbContext in .netcore ***********************
-            services.AddDbContext<OrderContext>(builder =>
-                builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<OrderContext>(builder =>
+            //    builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // ***********AddSqlServerDbContextFactory to use sql server directly (the easiest way)********
-            services.AddSqlServerDbContextFactory<OrderContext>();
+            //services.AddSqlServerDbContextFactory<OrderContext>();
 
             // ********************************************************************************************
             // Other ways to add the DbContext factory. (sending the options builder, you can build your options as you need.)
@@ -56,9 +56,9 @@ namespace EFCore.DbContextFactory.Examples.WebApi
             //    .UseLoggerFactory(dbLogger));
 
             // ************************************in memory***********************************************
-            //services.AddDbContextFactory<OrderContext>(builder => builder
-            //    .UseInMemoryDatabase("OrdersExample")
-            //    .UseLoggerFactory(dbLogger));
+            services.AddDbContextFactory<OrderContext>(builder => builder
+                .UseInMemoryDatabase("OrdersExample")
+                .UseLoggerFactory(dbLogger));
 
             services.AddScoped<OrderRepositoryWithFactory, OrderRepositoryWithFactory>();
             services.AddScoped<OrderRepository, OrderRepository>();

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+// ReSharper disable UnusedMember.Global
 
 namespace EFCore.DbContextFactory.Extensions
 {
@@ -17,7 +18,7 @@ namespace EFCore.DbContextFactory.Extensions
         /// <typeparam name="TDataContext">The DbContext.</typeparam>
         /// <param name="services"></param>
         /// <param name="nameOrConnectionString">Name or connection string of the context. (Optional)</param>
-        /// <param name="logger">The <see cref="ILoggerFactory" implementation./></param>
+        /// <param name="logger">The <see cref="ILoggerFactory" implementation.=""/></param>
         public static void AddSqlServerDbContextFactory<TDataContext>(this IServiceCollection services, string nameOrConnectionString = null, ILoggerFactory logger = null)
             where TDataContext : DbContext
         {
@@ -51,6 +52,7 @@ namespace EFCore.DbContextFactory.Extensions
         /// <typeparam name="TDataContext">The DbContext.</typeparam>
         /// <param name="services"></param>
         /// <param name="optionsAction">Service provider and DbContext options.</param>
+        // ReSharper disable once MemberCanBePrivate.Global
         public static void AddDbContextFactory<TDataContext>(this IServiceCollection services, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction)
             where TDataContext : DbContext
         {

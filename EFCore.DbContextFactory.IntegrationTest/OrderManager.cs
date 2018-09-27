@@ -1,11 +1,7 @@
 ﻿using EFCore.DbContextFactory.Examples.Data.Entity;
 using EFCore.DbContextFactory.Examples.Data.Repository;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -78,6 +74,20 @@ namespace EFCore.DbContextFactory.IntegrationTest
 
             orders = new List<Order> { newOrder1, newOrder2, newOrder3 };
             return Task.WhenAll(task1, task2, task3);
+        }
+
+        public Task GetAll()
+        {
+            return Task.Factory.StartNew(() =>
+                _orderRepository.GetAllOrders()
+            );
+        }
+
+        public Task<Order> GetOrderById(Guid id)
+        {
+            return Task.Factory.StartNew(() =>
+                _orderRepository.GetOrderById(id)
+            );
         }
 
         public Task Delete(List<Order> orders)
